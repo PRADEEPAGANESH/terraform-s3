@@ -1,9 +1,13 @@
 # terraform-s3
 s3-bucket/
 │
+
 ├── main.tf
+
 ├── variables.tf
+
 ├── outputs.tf
+
 └── README.md
 
 Module Configuration:
