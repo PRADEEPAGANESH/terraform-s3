@@ -16,7 +16,7 @@ In your Terraform configuration, you can use this module as follows:
 
 ```
 module "example_s3_bucket" {
-  source          = "git::<repository_url>"
+  source          = "git::https://github.com/PRADEEPAGANESH/terraform-s3.git"
   bucket_name     = "your-unique-bucket-name"
   bucket_acl      = "private" 
   versioning      = false     
