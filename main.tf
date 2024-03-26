@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-2"
 }
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "def-buck"
+    bucket = var.bucket_name
  
 }
 resource "aws_s3_bucket_versioning" "enabled" {
