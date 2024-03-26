@@ -2,14 +2,14 @@ provider "aws" {
   region = "us-east-2"
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name
-}
 variable "bucket_name" {
   description = "Name of the S3 bucket"
   default     = "my-example-bucket"
 }
 
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = var.bucket_name
+}
 
 resource "aws_s3_bucket_versioning" "enabled" {
   bucket = aws_s3_bucket.terraform_state.id
