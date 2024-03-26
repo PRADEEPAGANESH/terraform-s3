@@ -1,16 +1,24 @@
 provider "aws" {
   region = "us-east-2"
 }
-resource "aws_s3_bucket" "terraform_state" {
-    bucket = var.bucket_name
- 
+
+variable "bucket_name" {
+  description = "Name of the S3 bucket"
+  default     = "your-default-bucket-nameeeeeeee"
 }
+
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = var.bucket_name
+}
+
 resource "aws_s3_bucket_versioning" "enabled" {
   bucket = aws_s3_bucket.terraform_state.id
+
   versioning_configuration {
-    status = var.versioning_enabled
+    status = "Enabled"
   }
 }
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
   bucket = aws_s3_bucket.terraform_state.id
 
@@ -20,6 +28,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
     }
   }
 }
+
 resource "aws_s3_bucket_public_access_block" "public_access" {
   bucket                  = aws_s3_bucket.terraform_state.id
   block_public_acls       = true
