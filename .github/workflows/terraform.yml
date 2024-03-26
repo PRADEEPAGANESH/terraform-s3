@@ -1,29 +1,30 @@
-name: Terraform Deployment
+name: Terraform Workflow
 
 on:
   push:
     branches:
-      - main  # Adjust the branch name if needed
+      - main  # Adjust the branch name as needed
 
 jobs:
   terraform:
-    name: Deploy Infrastructure
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
+      - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.0.9  # Specify the Terraform version
+          terraform_version: 1.0.0  # Adjust the Terraform version as needed
 
-      - name: Initialize Terraform
+      - name: Terraform Init
         run: terraform init
 
-      - name: Plan Terraform Changes
-        run: terraform plan -out=tfplan
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan.out
 
-      - name: Apply Terraform Changes
-        run: terraform apply -auto-approve tfplan
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan.out
+
+      - name: Terraform Destroy (Optional)
+        run: terraform destroy -auto-approve
