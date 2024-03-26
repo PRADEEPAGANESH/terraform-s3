@@ -4,7 +4,7 @@ provider "aws" {
 
 variable "bucket_name" {
   description = "Name of the S3 bucket"
-  default     = "your-default-bucket-nameeeeeeee"
+  default     = "your-default-bucket-name"  # Corrected default bucket name
 }
 
 resource "aws_s3_bucket" "terraform_state" {
